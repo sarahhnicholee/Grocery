@@ -84,7 +84,7 @@ const ids = prompt(
 // Split the string of numbers into an array of strings.
 const idArr = ids.split(", ");
 
-idArr.forEach((id) => cart.push(id));
+idArr.forEach((id) => cart.push(+id));
 console.log(`The names of all the items are: `);
 logItemNames();
 const itemId = prompt("enter the id of an item you are trying to find", "1");
