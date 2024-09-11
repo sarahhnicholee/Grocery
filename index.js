@@ -1,132 +1,108 @@
-const items = [
-  { id: 1, name: "apple", price: 1.75, categoryId: 1, inventory: 100 },
-  { id: 2, name: "banana", price: 0.25, categoryId: 1, inventory: 100 },
-  { id: 3, name: "orange", price: 1.0, categoryId: 1, inventory: 100 },
-  { id: 4, name: "broccoli", price: 3.0, categoryId: 2, inventory: 100 },
-  { id: 5, name: "cucumber", price: 1.0, categoryId: 2, inventory: 100 },
-  { id: 6, name: "milk", price: 5.75, categoryId: 3, inventory: 100 },
-  { id: 7, name: "cheddar cheese", price: 4.0, categoryId: 3, inventory: 100 },
-  { id: 8, name: "sourdough loaf", price: 5.5, categoryId: 4, inventory: 100 },
-];
-
-const cart = [];
+/**
+ * @typedef Item
+ * @property {number} id - this item's ID
+ * @property {string} name - name of this item
+ * @property {number} price - price of this item
+ * @property {string} category - the food group this item belongs to
+ * @property {number} quantity - number of this item in inventory
+ */
 
 // ------------------ Complete the functions written below ------------------------------ //
 
-function logItemNames() {
-  //TODO: use the .forEach() method to log out the name of each item
+/**
+ * Prints out the name of each item in the given array.
+ * @param {Item[]} items - array of items
+ */
+function logNames(items) {
+  // TODO: use `forEach`
 }
 
 /**
- * @param {number} id
- * @returns {{id: number, name: string, price: number, category: string, inventory: number}} item
+ * @param {Item[]} items - array of items
+ * @returns {string[]} an array of item names in all uppercase
  */
-function findItemById(id) {
-  // TODO: Use the .find() method to return the item who's id matches the passed in id
+function getUppercaseNames(items) {
+  // TODO: use `map`
 }
 
 /**
- * @returns {items[]} Returns a new array with capitalized names
+ * @param {Item[]} items - array of items
+ * @param {number} id - id of the item to find
+ * @returns {Item} - the item in `items` with the given `id`
  */
-function capitalizeNames() {
-  // TODO:  Use the .map() and possibly .slice() methods and return a new items array with the item names capitalized
-  // DO NOT MUTATE THE ORIGINAL ARRAY IN YOU LOGIC
+function getItemById(items, id) {
+  // TODO: use `find`
 }
 
 /**
- * @returns {number} the sum of all inventory items
+ * @param {Item[]} items - array of items
+ * @param {string} name - name of the item to find
+ * @returns {number} the price of the item named `name`
  */
-
-function calculateTotalInventory() {
-  // TODO Use the .reduce() method to return the total number of items in inventory
+function getItemPriceByName(items, name) {
+  // TODO: use a loop!
 }
 
 /**
- * @returns {number} the total price of all inventory items combined
+ * @param {Item[]} items - array of items
+ * @param {string} category
+ * @returns {Item[]} array of items that belong to the given `category`
  */
-function calculateAllInventoryPrice() {
-  // TODO Use the .reduce() method to return the total price of all the items in inventory
+function getItemsByCategory(items, category) {
+  // TODO: use `filter`
 }
 
 /**
- * @param {string} name
- * @returns {number} the price of the item passed in
+ * @param {Item[]} items - array of items
+ * @returns {number} the total quantity of all items
  */
-function getItemPriceByName(name) {
-  // TODO: Use your knowledge of objects and arrays to get the price of the item passed in
+function countItems(items) {
+  // TODO: use `reduce`
 }
 
 /**
- * @param {categoryId} id of category to find
- * @returns {items[]} array of all items which belong to the given category
+ * @param {Item[]} items - array of items
+ * @returns {number} the cost of all given items
  */
-function filterItemsByCategoryId(categoryId) {
-  // TODO: use the .filter() method to filter out all items which don't belong the passed in category
-}
-
-function logCartItems() {
-  // TODO: Loop through your cart and use the indexes to log the names of all items in your cart
-}
-
-/**
- * @returns { number } returns the total price of items in your cart
- */
-function calculateTotalCartPrice() {
-  // TODO: Loop through your cart and return the total price of all items in your cart
+function calculateTotalPrice(items) {
+  // TODO: use `reduce`
 }
 
 // --------------------- DO NOT CHANGE THE CODE BELOW ------------------------ //
 
-const ids = prompt(
-  "enter numbers separated by commas for the ids of the items you want to add to your cart",
-  "1, 3, 5"
-);
-// Split the string of numbers into an array of strings.
-const idArr = ids.split(", ");
+/** @type {Item[]} */
+const INVENTORY = [
+  { id: 1, name: "apple", price: 1.75, category: "fruit", quantity: 100 },
+  { id: 2, name: "banana", price: 0.25, category: "fruit", quantity: 137 },
+  { id: 3, name: "orange", price: 1.0, category: "fruit", quantity: 10 },
+  { id: 4, name: "broccoli", price: 3.0, category: "vegetable", quantity: 67 },
+  { id: 6, name: "milk", price: 5.75, category: "dairy", quantity: 90 },
+  { id: 7, name: "cheddar", price: 4.0, category: "dairy", quantity: 63 },
+  { id: 8, name: "sourdough", price: 5.5, category: "grains", quantity: 81 },
+];
 
-idArr.forEach((id) => cart.push(+id));
-console.log(`The names of all the items are: `);
-logItemNames();
-const itemId = prompt("enter the id of an item you are trying to find", "1");
+console.log("Welcome! We carry the following items:");
+logNames(INVENTORY);
+
+console.log("Here are the names again in all uppercase:");
+console.log(getUppercaseNames(INVENTORY));
+
+console.log(`In total, we have ${countItems(INVENTORY)} items in stock.`);
+
+const totalCost = calculateTotalPrice(INVENTORY);
 console.log(
-  `The item with id ${itemId} is  ${JSON.stringify(
-    findItemById(+itemId),
-    null,
-    2
-  )}`
-);
-console.log(
-  "We can map over an array and return a new array with the names capitalized like so: ",
-  capitalizeNames()
-);
-console.log(
-  "The total inventory of all grocery items is: ",
-  calculateTotalInventory()
-);
-console.log(
-  "The total price of all items in inventory is: ",
-  calculateAllInventoryPrice()
+  `It would cost $${totalCost?.toFixed(2)} to purchase everything in stock.`
 );
 
-const itemToFind = prompt(
-  "Enter the name of an item to find the price of",
-  "apple"
-);
-console.log(`The price of ${itemToFind} is: `, getItemPriceByName(itemToFind));
+const itemId = prompt("Enter the ID of an item:", "1");
+console.log(`The item with id #${itemId} is:`);
+console.log(getItemById(INVENTORY, +itemId));
 
-const categoryId = prompt(
-  "Enter a number between 1-4 to filter only items with that categoryId",
-  2
-);
+const itemName = prompt("Enter the name of an item:", "apple");
 console.log(
-  `The items in category ${categoryId} are: `,
-  filterItemsByCategoryId(+categoryId)
+  `The price of ${itemName} is ${getItemPriceByName(INVENTORY, itemName)}.`
 );
 
-console.log("Cart items: ");
-logCartItems();
-
-console.log(
-  `The total price of the items in your cart is: `,
-  calculateTotalCartPrice()
-);
+const category = prompt("Enter a category you would like to see:", "fruit");
+console.log(`The items in the ${category} category are:`);
+console.log(getItemsByCategory(INVENTORY, category));
