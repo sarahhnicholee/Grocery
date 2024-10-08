@@ -14,8 +14,10 @@
  * @param {Item[]} items - array of items
  */
 function logNames(items) {
-  // TODO: use `forEach`
-}
+  INVENTORY.forEach(item => 
+    console.log(item.name))
+  }
+
 
 /**
  * @param {Item[]} items - array of items
@@ -23,6 +25,11 @@ function logNames(items) {
  */
 function getUppercaseNames(items) {
   // TODO: use `map`
+  const uppercaseArr = items.map(item => 
+    // console.log("This is an item in an array:", item)
+   item.name.toUpperCase())
+  // console.log(uppercaseArr)
+  return uppercaseArr
 }
 
 /**
@@ -31,9 +38,11 @@ function getUppercaseNames(items) {
  * @returns {Item} - the item in `items` with the given `id`
  */
 function getItemById(items, id) {
+  // const itemByIndex= getItemById.find((item,idx)=>{ }) 
   // TODO: use `find`
+  return items.find((item)=>item.id===id)
+  
 }
-
 /**
  * @param {Item[]} items - array of items
  * @param {string} name - name of the item to find
@@ -41,6 +50,11 @@ function getItemById(items, id) {
  */
 function getItemPriceByName(items, name) {
   // TODO: use a loop!
+for (let i=0; i<items.length; i++){
+  if (items[i].name==name){
+    return items[i].price;
+  }
+}
 }
 
 /**
@@ -50,6 +64,11 @@ function getItemPriceByName(items, name) {
  */
 function getItemsByCategory(items, category) {
   // TODO: use `filter`
+  // const itCat= getItemsByCategory.filter(inventory=>inventory.category===fruits)
+  // console.log()
+  const filtCat= items.filter(item=>item.category=== category)
+  // console.log(filtCat)
+  return filtCat
 }
 
 /**
@@ -57,6 +76,9 @@ function getItemsByCategory(items, category) {
  * @returns {number} the total quantity of all items
  */
 function countItems(items) {
+  const count= items.reduce((total, item)=> item.quantity+ total, 0)
+  console.log(count)
+  return count
   // TODO: use `reduce`
 }
 
@@ -65,6 +87,9 @@ function countItems(items) {
  * @returns {number} the cost of all given items
  */
 function calculateTotalPrice(items) {
+  const count= items.reduce((acc,item)=> acc+ (item.price * item.quantity),0)
+  console.log(count)
+  return count
   // TODO: use `reduce`
 }
 
